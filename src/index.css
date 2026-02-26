@@ -1,0 +1,48 @@
+/* 1. Import the font directly at the top of your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* 2. Set DM Sans as the default sans font for Tailwind */
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-primary: #3ecf8e; /* Supabase Green */
+  --color-brand-bg: #1f1f1f;    /* Deep Charcoal */
+  --color-brand-border: #2e2e2e;
+  --color-card-bg: #1a1a1a; /* Dark charcoal for cards */
+  --color-card-border: #2e2e2e;
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  } /* Removed the trailing comma here that can sometimes cause parsing errors */
+}
+
+.marquee-mask {
+  /* This creates a sharp 'highlight' in the middle 20% of the container */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 20%,
+    black 40%,
+    black 60%,
+    rgba(0, 0, 0, 0.2) 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 20%,
+    black 40%,
+    black 60%,
+    rgba(0, 0, 0, 0.2) 80%,
+    transparent 100%
+  );
+}
+
+body {
+  /* 3. Added 'font-sans' here to ensure it applies globally to the body */
+  @apply font-sans bg-[#1f1f1f] text-slate-200 antialiased;
+}
