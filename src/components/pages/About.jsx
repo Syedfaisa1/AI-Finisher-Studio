@@ -147,7 +147,7 @@
 
 import { Sparkles, Target, Zap } from 'lucide-react';
 import Aurora from '../Aurora';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
 
 export default function About() {
   return (
