@@ -1,4 +1,5 @@
 import { ArrowRight, CalendarDays } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 export default function Footer() {
   return (
@@ -91,7 +92,7 @@ export default function Footer() {
         {/* --- BRAND INFO --- */}
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-4">
-            <img className='w-35' src="/src/assets/logo.png" alt="logo"/>
+            <img className='w-35' src={logo} alt="logo"/>
           </div>
           <p className="text-slate-300 font-semibold text-sm">Serious engineering for AI-built MVPs.</p>
           <p className="text-slate-500 text-sm mt-1">Finish what AI started.</p>

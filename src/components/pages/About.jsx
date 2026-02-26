@@ -147,6 +147,7 @@
 
 import { Sparkles, Target, Zap } from 'lucide-react';
 import Aurora from '../Aurora';
+import logo from '../assets/logo.png';
 
 export default function About() {
   return (
@@ -275,7 +276,7 @@ export default function About() {
           
            {/* Faded Logo */}
            <div className="flex justify-center items-center gap-4 mb-16 opacity-30 grayscale">
-             <img src="/src/assets/logo.png" alt="logo" />
+             <img src={logo} alt="logo" />
            </div>
 
            {/* Quote */}

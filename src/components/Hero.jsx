@@ -138,6 +138,9 @@ import {
   ChevronRight, 
   Image as ImageIcon 
 } from 'lucide-react';
+import bffImg from '../assets/bff.png';
+import affImg from '../assets/aff.png';
+import starImg from '../assets/star.png';
 
 export default function Hero({ onOpenForm }) {
   // --- COMPARISON SECTION DATA ---
@@ -279,7 +282,7 @@ export default function Hero({ onOpenForm }) {
               className="absolute inset-0 w-full h-full bg-[#1e1e1e]"
               style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }} 
             >
-              <img src="/src/assets/bff.png" className="w-full h-full object-container pointer-events-none select-none" alt="Before" />
+              <img src={bffImg}  className="w-full h-full object-container pointer-events-none select-none" alt="Before" />
             </div>
 
             {/* AFTER IMAGE (Right Side) */}
@@ -287,7 +290,7 @@ export default function Hero({ onOpenForm }) {
               className="absolute inset-0 w-full h-full bg-[#f8f9fa]"
               style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}
             >
-              <img src="/src/assets/aff.png" className="w-full h-full object-conatiner pointer-events-none select-none" alt="After" />
+              <img src={affImg} className="w-full h-full object-conatiner pointer-events-none select-none" alt="After" />
             </div>
 
             {/* SLIDER DIVIDER LINE & HANDLE */}
@@ -354,7 +357,7 @@ export default function Hero({ onOpenForm }) {
             
             {/* Floating Brand Star Icon */}
             <div className="absolute -top-6 left-1/2 -translate-x-1/2 p-2 rounded-full">
-                <img className="w-8 h-8" src="src/assets/star.png" alt="logo" />
+                <img className="w-8 h-8" src={starImg} alt="logo" />
             </div>
 
             <h3 className="text-lg md:text-xl text-center text-slate-300 font-medium mb-10 leading-relaxed mt-2">
