@@ -127,6 +127,7 @@
 // }
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import Aurora from './Aurora';
 import { 
   ArrowRight, 
@@ -138,11 +139,89 @@ import {
   ChevronRight, 
   Image as ImageIcon 
 } from 'lucide-react';
+
+
 import bffImg from '../assets/bff.png';
 import affImg from '../assets/aff.png';
 import starImg from '../assets/star.png';
 
+// --- CARD ANIMATION ---
+const cardContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const cardVariant = (direction) => ({
+  hidden: {
+    opacity: 0,
+    x: direction === "left" ? -60 : 60,
+    scale: 0.98
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut"
+    }
+  }
+});
+
+const listItemVariant = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4 }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, // Delays each word by 0.1s
+    }
+  }
+};
+
+const wordVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20, 
+    filter: "blur(8px)" 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { 
+      duration: 0.5, 
+      ease: "easeOut" 
+    }
+  }
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: "easeOut" 
+    }
+  }
+};
+
 export default function Hero({ onOpenForm }) {
+  const headingText = "You've built it fast.  Now finish it right.";
   // --- COMPARISON SECTION DATA ---
   const badPractices = [
     "No deployment pipelines",
@@ -219,25 +298,82 @@ export default function Hero({ onOpenForm }) {
 
       {/* --- HERO CONTENT --- */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-40 mb-32">
-        <h1 className="text-5xl md:text-[72px] lg:text-[80px] font-semibold tracking-tight text-white mb-6 leading-[1.05]">
-          You've built it fast.<br />
-          <span className="text-[#14bc8b]">Now finish it right.</span>
-        </h1>
-        
-        <p className="text-base md:text-lg text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-          You built fast with AI, no-code, or white-coding tools.<br className="hidden md:block" />
-          We transform fragile prototypes into <span className="text-white font-semibold">secure, deployable</span><br className="hidden md:block" />
-          <span className="text-white font-semibold">MVPs</span> ready for real users and investors.
-        </p>
+       <motion.h1 
+  variants={staggerContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  className="text-5xl md:text-[72px] lg:text-[80px] font-semibold tracking-tight text-white mb-6 leading-[1.1]"
+>
+  {/* First Line */}
+  <div className="block">
+    {"You've built it fast.".split(" ").map((word, i) => (
+      <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
+        {word}
+      </motion.span>
+    ))}
+  </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+  {/* Second Line - Colored Green to match Figma */}
+  <div className="block text-[#14bc8b]">
+    {"Now finish it right.".split(" ").map((word, i) => (
+      <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
+        {word}
+      </motion.span>
+    ))}
+  </div>
+</motion.h1>
+        
+        <motion.p 
+  variants={staggerContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  className="text-base md:text-lg text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed font-normal"
+>
+  {/* Line 1: AI/No-code Context */}
+  <span className="block">
+    {"You built fast with AI, no-code, or white-coding tools.".split(" ").map((word, i) => (
+      <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">{word}</motion.span>
+    ))}
+  </span>
+
+  {/* Line 2: The Transformation Layer */}
+  <span className="block">
+    {"We transform fragile prototypes into ".split(" ").map((word, i) => (
+      <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">{word}</motion.span>
+    ))}
+    <motion.span variants={wordVariants} className="text-white font-semibold inline-block">
+      secure, deployable
+    </motion.span>
+  </span>
+
+  {/* Line 3: Starting exactly from MVPs per your request */}
+  <span className="block">
+    <motion.span variants={wordVariants} className="text-white font-semibold inline-block mr-[0.25em]">
+      MVPs
+    </motion.span>
+    {"ready for real users and investors.".split(" ").map((word, i) => (
+      <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">{word}</motion.span>
+    ))}
+  </span>
+</motion.p>
+
+        {/* FIX: Buttons now have the motion.div wrapper with variants applied */}
+        <motion.div 
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
           <button onClick={onOpenForm} className="px-8 py-3.5 bg-[#0A7052] hover:bg-[#10a378] text-white text-xl font-semibold rounded-lg transition-all flex items-center gap-2 group shadow-[0_0_20px_rgba(20,188,139,0.15)]">
             Finish my MVP <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button className="px-8 py-3.5 bg-[#1a1a1a] border border-[#2e2e2e] hover:border-slate-500 text-white text-xl font-normal rounded-lg transition-all flex items-center gap-2">
             <Play size={18} fill="currentColor" /> See how it works
           </button>
-        </div>
+        </motion.div>
       </div>
 
       {/* --- DASHBOARD COMPARISON SLIDER --- */}
@@ -324,60 +460,136 @@ export default function Hero({ onOpenForm }) {
         </div>
       </div>
 
+{/* ================= COMPARISON SECTION ================= */}
+
 <div className="relative z-10 w-full max-w-4xl mx-auto px-6">
-        
-        {/* 1. Heading is now OUTSIDE the grid */}
-        <h2 className="text-center text-2xl md:text-3xl text-slate-400 mb-16 font-medium">
-          Ship the production-ready version. <span className="text-white font-semibold">With us.</span>
-        </h2>
-      {/* --- COMPARISON TEXT & CARDS --- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          {/* Left Card: AI Built (Negative) */}
-          <div className="bg-[#121212] border border-[#2e2e2e] rounded-2xl p-8 md:p-10 flex flex-col">
-            <h3 className="text-lg md:text-xl text-center text-slate-300 font-medium mb-10 leading-relaxed">
-              Most AI-built products <span className="text-[#FF6E6E] font-bold">break<br />when real users arrive</span>
-            </h3>
-            
-            <div className="space-y-4 mt-auto">
-              {badPractices.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-4 bg-[#0a0a0a] border border-white/5 rounded-xl">
-                  {/* RED ICON WRAPPER */}
-                  <div className="w-10 h-10 rounded-lg border border-[#FF6E6E]/20 bg-[#FF6E6E]/10 flex items-center justify-center flex-shrink-0">
-                    <XCircle className="text-[#FF6E6E]" size={18} strokeWidth={2} />
-                  </div>
-                  <span className="text-slate-400 text-sm">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Right Card: Production Ready (Positive) */}
-          <div className="bg-[#121212] border border-[#2e2e2e] rounded-2xl p-8 md:p-10 flex flex-col relative">
-            
-            {/* Floating Brand Star Icon */}
-            <div className="absolute -top-6 left-1/2 -translate-x-1/2 p-2 rounded-full">
-                <img className="w-8 h-8" src={starImg} alt="logo" />
-            </div>
+  {/* Heading */}
+  <motion.h2
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    className="text-center text-2xl md:text-3xl text-slate-400 mb-16 font-medium"
+  >
+    Ship the production-ready version.{" "}
+    <span className="text-white font-semibold">With us.</span>
+  </motion.h2>
 
-            <h3 className="text-lg md:text-xl text-center text-slate-300 font-medium mb-10 leading-relaxed mt-2">
-              Production-ready products <span className="text-[#14bc8b] font-bold">scale<br />when real users arrive</span>
-            </h3>
-            
-            <div className="space-y-4 mt-auto">
-              {goodPractices.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-4 bg-[#0a0a0a] border border-white/5 rounded-xl">
-                  {/* GREEN ICON WRAPPER */}
-                  <div className="w-10 h-10 rounded-lg border border-[#14bc8b]/20 bg-[#14bc8b]/10 flex items-center justify-center flex-shrink-0">
-                    <Check className="text-[#14bc8b]" size={20} strokeWidth={2.5} />
-                  </div>
-                  <span className="text-slate-300 text-sm font-medium">{item}</span>
-                </div>
-              ))}
+  {/* Grid */}
+  <motion.div
+    variants={cardContainer}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.3 }}
+    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+  >
+
+    {/* ================= LEFT CARD ================= */}
+    <motion.div
+      variants={cardVariant("left")}
+      className="bg-[#121212] border border-[#2e2e2e] rounded-2xl p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:border-[#FF6E6E]/40 hover:shadow-[0_0_30px_rgba(255,110,110,0.15)]"
+    >
+      <h3 className="text-lg md:text-xl text-center text-slate-300 font-medium mb-10 leading-relaxed">
+        Most AI-built products{" "}
+        <span className="text-[#FF6E6E] font-bold">
+          break<br />when real users arrive
+        </span>
+      </h3>
+
+      <div className="space-y-4 mt-auto">
+        {badPractices.map((item, idx) => (
+          <motion.div
+            key={idx}
+            variants={listItemVariant}
+            className="flex items-center gap-4 p-4 bg-[#0a0a0a] border border-white/5 rounded-xl"
+          >
+            <div className="w-10 h-10 rounded-lg border border-[#FF6E6E]/20 bg-[#FF6E6E]/10 flex items-center justify-center flex-shrink-0">
+              
+              {/* Animated X Icon */}
+              <motion.div
+                initial={{ rotate: -90, opacity: 0 }}
+                whileInView={{ rotate: 0, opacity: 1 }}
+                transition={{ delay: idx * 0.1, duration: 0.4 }}
+              >
+                <XCircle
+                  className="text-[#FF6E6E]"
+                  size={18}
+                  strokeWidth={2}
+                />
+              </motion.div>
+
             </div>
-          </div>
+            <span className="text-slate-400 text-sm">{item}</span>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+
+    {/* ================= RIGHT CARD ================= */}
+    <motion.div
+      variants={cardVariant("right")}
+      className="bg-[#121212] border border-[#2e2e2e] rounded-2xl p-8 md:p-10 flex flex-col relative transition-all duration-300 hover:-translate-y-2 hover:border-[#14bc8b]/40 hover:shadow-[0_0_30px_rgba(20,188,139,0.15)]"
+    >
+
+      {/* Floating Star */}
+      <motion.div
+        animate={{ y: [0, -6, 0] }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="absolute -top-6 left-1/2 -translate-x-1/2 p-2 rounded-full"
+      >
+        <img className="w-8 h-8" src={starImg} alt="logo" />
+      </motion.div>
+
+      <h3 className="text-lg md:text-xl text-center text-slate-300 font-medium mb-10 leading-relaxed mt-2">
+        Production-ready products{" "}
+        <span className="text-[#14bc8b] font-bold">
+          scale<br />when real users arrive
+        </span>
+      </h3>
+
+      <div className="space-y-4 mt-auto">
+        {goodPractices.map((item, idx) => (
+          <motion.div
+            key={idx}
+            variants={listItemVariant}
+            className="flex items-center gap-4 p-4 bg-[#0a0a0a] border border-white/5 rounded-xl"
+          >
+            <div className="w-10 h-10 rounded-lg border border-[#14bc8b]/20 bg-[#14bc8b]/10 flex items-center justify-center flex-shrink-0">
+              
+              {/* Animated Check Icon */}
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{
+                  delay: idx * 0.15,
+                  type: "spring",
+                  stiffness: 200
+                }}
+              >
+                <Check
+                  className="text-[#14bc8b]"
+                  size={20}
+                  strokeWidth={2.5}
+                />
+              </motion.div>
+
+            </div>
+            <span className="text-slate-300 text-sm font-medium">
+              {item}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+    </motion.div>
+
+  </motion.div>
 </div>
-        </div>
     </section>
   );
 }

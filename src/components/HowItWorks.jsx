@@ -100,7 +100,7 @@
 
 import { Code, Users, Briefcase, Building2 } from 'lucide-react';
 // 1. Import your star image directly
-import starLogo from '../assets/star.png';
+import starLogo from '../assets/star2.svg';
 
 export default function HowItWorks() {
   const profiles = [
@@ -139,9 +139,17 @@ export default function HowItWorks() {
       
       {/* 2. Giant Faded Star Logo on the right */}
       {/* FIXED: Removed the SVG wrapper and used the imported image properly */}
-      <div className="absolute top-1/2 -translate-y-1/2 -right-[100px] w-[1000px] h-[1000px] opacity-[0.03] pointer-events-none z-[-1]">
-        <img src={starLogo} alt="Background Logo" className="w-full h-full object-contain" />
-      </div>
+      {/* 2. Giant Faded Star Logo on the right */}
+<div className="absolute top-1/2 -translate-y-1/2 -right-[100px] w-[1000px] h-[1000px] opacity-10 pointer-events-none z-[-1]">
+  
+  {/* If using Next.js, use {starLogo.src}. If using Vite, use {starLogo} */}
+  <img 
+    src={starLogo.src || starLogo} 
+    alt="Background Logo" 
+    className="w-full h-full object-contain" 
+  />
+  
+</div>
 
       <div className="max-w-5xl mx-auto relative z-10">
         
