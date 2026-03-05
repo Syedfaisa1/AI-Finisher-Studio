@@ -99,7 +99,7 @@ export default function Solutions() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }} // Delays so it fades in right after the subheadline
           viewport={{ once: true }}
-          className="bg-[#0A7052] hover:bg-[#10a378] text-[#111111] px-8 py-3.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2 mx-auto group mb-24"
+          className="bg-[#0A7052] hover:bg-[#10a378] text-white px-8 py-3.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2 mx-auto group mb-24"
         >
           Get Your Solution Plan
           <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

@@ -138,39 +138,40 @@ const dropdownSolutions = [
     title: "MVP Finishing", 
     desc: "AI Prototype → Production MVP", 
     icon: <Rocket size={18} />, 
-    path: "/solutions/mvp" 
+    path: "/solutions#mvp" // <--- Changed from /mvp to #mvp
   },
   { 
     title: "Backend Infrastructure", 
     desc: "Scalable backend architecture", 
     icon: <Database size={18} />, 
-    path: "/solutions/backend" 
+    path: "/solutions#backend" // <--- Changed from /backend to #backend
   },
   { 
     title: "Security & Compliance", 
     desc: "Enterprise-grade security", 
     icon: <Shield size={18} />, 
-    path: "/solutions/security" 
+    path: "/solutions#security" // <--- Changed from /security to #security
   },
   { 
     title: "Deployment & DevOps", 
     desc: "Production deployment pipeline", 
     icon: <Server size={18} />, 
-    path: "/solutions/deployment" 
+    path: "/solutions#deployment" // <--- Changed from /deployment to #deployment
   },
   { 
     title: "Code Quality", 
     desc: "Technical debt remediation", 
     icon: <GitBranch size={18}  />, 
-    path: "/solutions/quality" 
+    path: "/solutions#quality" // <--- Changed from /quality to #quality
   },
   { 
     title: "Scale Preparation", 
     desc: "Growth infrastructure", 
     icon: <TrendingUp size={18} />, 
-    path: "/solutions/scale" 
+    path: "/solutions#scale" // <--- Changed from /scale to #scale
   }
 ];
+
 
 export default function Navbar({ onOpenForm }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -207,14 +208,15 @@ export default function Navbar({ onOpenForm }) {
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
             >
-              <button 
+             <Link 
+                to="/solutions"
                 className={`flex items-center gap-1.5 font-medium transition-colors hover:text-[#14bc8b] outline-none ${
                   isActive('/solutions') ? 'text-[#14bc8b]' : 'text-slate-400'
                 }`}
               >
                 Solutions 
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
+              </Link>
 
               {/* --- ACTUAL DROPDOWN MENU --- */}
               <div className={`absolute top-full left-1/2 -translate-x-1/2 w-[640px] transition-all duration-300 ${
@@ -255,7 +257,7 @@ export default function Navbar({ onOpenForm }) {
               </div>
             </div>
 
-            <a href="#pricing" className="text-slate-400 font-medium hover:text-[#14bc8b] transition-colors">Pricing</a>
+            <a href="/#pricing" className="text-slate-400 font-medium hover:text-[#14bc8b] transition-colors">Pricing</a>
              <Link 
               to="/blog" 
               className={`font-medium transition-colors hover:text-[#14bc8b] ${
@@ -269,7 +271,7 @@ export default function Navbar({ onOpenForm }) {
           <div className="hidden lg:block">
             <button 
               onClick={onOpenForm}
-              className="bg-[#14bc8b] hover:bg-[#10a378] text-[#0a0a0a] px-6 py-2.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2"
+              className="bg-[#14bc8b] cursor-pointer hover:bg-[#10a378] text-[#0a0a0a] px-6 py-2.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2"
             >
               Get Started
               <ArrowRight className="w-4 h-4" />
@@ -340,7 +342,7 @@ export default function Navbar({ onOpenForm }) {
               </div>
             </div>
 
-            <a href="#pricing" className="py-4 text-white font-semibold border-b border-white/5">Pricing</a>
+            <a href="/#pricing"  className="py-4 text-white font-semibold border-b border-white/5">Pricing</a>
           <Link 
   to="/blog" 
   onClick={() => setIsMobileMenuOpen(false)}

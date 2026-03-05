@@ -367,7 +367,7 @@ export default function Hero({ onOpenForm }) {
           viewport={{ once: true }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <button onClick={onOpenForm} className="px-8 py-3.5 bg-[#0A7052] hover:bg-[#10a378] text-white text-xl font-semibold rounded-lg transition-all flex items-center gap-2 group shadow-[0_0_20px_rgba(20,188,139,0.15)]">
+          <button onClick={onOpenForm} className="px-8 py-3.5 bg-[#0A7052] hover:bg-[#10a378] cursor-pointer text-white text-xl font-semibold rounded-lg transition-all flex items-center gap-2 group shadow-[0_0_20px_rgba(20,188,139,0.15)]">
             Finish my MVP <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button className="px-8 py-3.5 bg-[#1a1a1a] border border-[#2e2e2e] hover:border-slate-500 text-white text-xl font-normal rounded-lg transition-all flex items-center gap-2">

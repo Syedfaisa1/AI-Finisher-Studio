@@ -1,7 +1,7 @@
 import { ArrowRight, CalendarDays } from 'lucide-react';
 import logo from '../assets/logo.png';
 
-export default function Footer() {
+export default function Footer({ onOpenForm }) {
   return (
     <footer className="bg-[#0a0a0a] pt-32 pb-8 px-6 relative overflow-hidden">
       
@@ -20,9 +20,10 @@ export default function Footer() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="w-full sm:w-auto px-8 py-3.5 bg-[#0A7052] hover:bg-[#10a378] text-white font-normal rounded-lg transition-all flex items-center justify-center gap-2 group">
+            <button onClick={onOpenForm} className="w-full sm:w-auto px-8 py-3.5 bg-[#0A7052] hover:bg-[#10a378] cursor-pointer text-white font-normal rounded-lg transition-all flex items-center justify-center gap-2 group">
               Get Started <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
+            
             <button className="w-full sm:w-auto px-8 py-3.5 bg-[#36363680] border border-[#2e2e2e] hover:border-slate-500 text-white font-medium rounded-lg transition-all flex items-center justify-center gap-2">
               <CalendarDays size={18} className="text-slate-400" /> Book Strategy Call
             </button>
@@ -38,18 +39,20 @@ export default function Footer() {
           {/* Column 1 */}
           <div className="flex flex-col gap-4">
             <h4 className="text-white font-normal text-sm mb-2">Services</h4>
-            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Backend Stabilization</a>
-            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Deployment Pipelines</a>
-            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Security Hardening</a>
-            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Architecture Audit</a>
+            <a href="/solutions" className="text-slate-400 hover:text-white text-sm transition-colors">MVP Finishing</a>
+            <a href="/solutions" className="text-slate-400 hover:text-white text-sm transition-colors">Backend Infrastructure</a>
+            <a href="/solutions" className="text-slate-400 hover:text-white text-sm transition-colors">Security Compliance</a>
+            <a href="/solutions" className="text-slate-400 hover:text-white text-sm transition-colors">Deployment DevOps</a>
+            <a href="/solutions" className="text-slate-400 hover:text-white text-sm transition-colors">Code Quality</a>
+            <a href="/solutions" className="text-slate-400 hover:text-white text-sm transition-colors">Scale Preparation</a>
           </div>
 
           {/* Column 2 */}
           <div className="flex flex-col gap-4">
             <h4 className="text-white font-normal text-sm mb-2">About</h4>
-            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">About AI Finisher</a>
-            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Blog</a>
-            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Case Studies</a>
+            <a href="/about" className="text-slate-400 hover:text-white text-sm transition-colors">About AI Finisher</a>
+            <a href="/blog" className="text-slate-400 hover:text-white text-sm transition-colors">Blog</a>
+            {/* <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Case Studies</a> */}
           </div>
 
           {/* Column 3 */}
@@ -57,7 +60,7 @@ export default function Footer() {
             <h4 className="text-white font-normal text-sm mb-2">Company</h4>
             <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Careers</a>
             <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Partners</a>
-            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Press</a>
+            {/* <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Press</a> */}
           </div>
 
           {/* Column 4 */}
