@@ -129,11 +129,14 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Aurora from './Aurora';
+import webVideo from '../assets/web.mp4';
+import mobileVideo from '../assets/mobile.mp4'; 
 import { 
   ArrowRight, 
   Play, 
   XCircle, 
   Check,
+  X,
   CheckSquare, 
   ChevronLeft, 
   ChevronRight, 
@@ -221,6 +224,7 @@ const fadeInUp = {
 };
 
 export default function Hero({ onOpenForm }) {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const headingText = "You've built it fast.  Now finish it right.";
   // --- COMPARISON SECTION DATA ---
   const badPractices = [
@@ -370,7 +374,7 @@ export default function Hero({ onOpenForm }) {
           <button onClick={onOpenForm} className="px-8 py-3.5 bg-[#0A7052] hover:bg-[#10a378] cursor-pointer text-white text-xl font-semibold rounded-lg transition-all flex items-center gap-2 group shadow-[0_0_20px_rgba(20,188,139,0.15)]">
             Finish my MVP <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="px-8 py-3.5 bg-[#1a1a1a] border border-[#2e2e2e] hover:border-slate-500 text-white text-xl font-normal rounded-lg transition-all flex items-center gap-2">
+          <button onClick={() => setIsVideoOpen(true)} className="px-8 py-3.5 bg-[#1a1a1a] border border-[#2e2e2e] hover:border-slate-500 text-white text-xl font-normal rounded-lg transition-all flex items-center gap-2">
             <Play size={18} fill="currentColor" /> See how it works
           </button>
         </motion.div>
@@ -590,6 +594,64 @@ export default function Hero({ onOpenForm }) {
 
   </motion.div>
 </div>
+
+{/* --- VIDEO MODAL --- */}
+      {isVideoOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-10">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative w-full max-w-5xl aspect-video bg-[#111] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(20,188,139,0.2)]"
+          >
+            {/* Close Button */}
+            <button 
+              onClick={() => setIsVideoOpen(false)}
+              className="absolute top-6 right-6 z-50 p-2 bg-black/50 hover:bg-white/10 rounded-full text-white transition-all border border-white/10 cursor-pointer"
+            >
+              <X size={24} />
+            </button>
+
+          {/* --- VIDEO MODAL --- */}
+{isVideoOpen && (
+  <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-10">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      /* On mobile, the container becomes narrower (max-w-sm) to fit 
+         the vertical video properly without huge black bars. 
+      */
+      className="relative w-full max-w-sm md:max-w-5xl aspect-[9/16] md:aspect-video bg-[#111] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(20,188,139,0.2)]"
+    >
+      {/* Close Button */}
+      <button 
+        onClick={() => setIsVideoOpen(false)}
+        className="absolute top-6 right-6 z-50 p-2 bg-black/50 hover:bg-white/10 rounded-full text-white transition-all border border-white/10 cursor-pointer"
+      >
+        <X size={24} />
+      </button>
+
+      {/* DYNAMIC VIDEO PLAYER */}
+      <video 
+        autoPlay 
+        muted 
+        playsInline 
+        controls 
+        className="w-full h-full object-contain"
+      >
+        {/* Desktop users get widescreen web.mp4 */}
+        <source src={webVideo} media="(min-width: 768px)" type="video/mp4" /> 
+        
+        {/* Mobile users get vertical mobile.mp4 */}
+        <source src={mobileVideo} type="video/mp4" /> 
+        
+        Your browser does not support the video tag.
+      </video>
+    </motion.div>
+  </div>
+)}
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }

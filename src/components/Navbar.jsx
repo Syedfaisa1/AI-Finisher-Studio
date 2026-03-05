@@ -219,7 +219,7 @@ export default function Navbar({ onOpenForm }) {
               </Link>
 
               {/* --- ACTUAL DROPDOWN MENU --- */}
-              <div className={`absolute top-full left-1/2 -translate-x-1/2 w-[640px] transition-all duration-300 ${
+              <div className={`absolute top-15 left-1/2 -translate-x-1/2 w-[640px] transition-all duration-300 ${
                 isDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
               }`}>
                 <div className="bg-[#111111] border border-white/10 rounded-2xl p-6 mt-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
@@ -246,12 +246,12 @@ export default function Navbar({ onOpenForm }) {
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-white/5 flex justify-center">
-                    <Link 
-                      to="/solutions" 
+                   <Link 
+                      to="/solutions#all-solutions" // <-- Add the /solutions# here!
                       className="text-[#14bc8b] text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all"
                     >
                       View All Solutions <ArrowRight size={16} />
-                    </Link>
+                  </Link>
                   </div>
                 </div>
               </div>

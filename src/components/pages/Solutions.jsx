@@ -94,25 +94,28 @@ export default function Solutions() {
         </motion.p>
 
         {/* --- PRIMARY CTA --- */}
-        <motion.button 
+        <motion.a 
+          href="/#pricing" 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }} // Delays so it fades in right after the subheadline
+          transition={{ duration: 0.6, delay: 0.6 }} 
           viewport={{ once: true }}
-          className="bg-[#0A7052] hover:bg-[#10a378] text-white px-8 py-3.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2 mx-auto group mb-24"
+          className="bg-[#0A7052] hover:bg-[#10a378] text-white px-8 py-3.5 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 mx-auto group mb-24 w-fit"
         >
           Get Your Solution Plan
           <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-        </motion.button>
+        </motion.a>
+      </div>
 
-       {/* --- CARDS GRID --- */}
+      <div className='relative z-10  mx-auto px-6 text-center'>
+         {/* --- CARDS GRID --- */}
         <motion.div 
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           // Use max-w-7xl to allow maximum stretch
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full max-w-7xl mx-auto"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto"
         >
           {/* Card 1 */}
           <motion.div variants={cardVariants} className="bg-[#151515] border border-[#2e2e2e] rounded-2xl p-6 xl:p-8 flex flex-col text-left hover:border-[#14bc8b]/30 transition-all duration-300">

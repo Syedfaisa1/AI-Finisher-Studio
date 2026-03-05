@@ -213,6 +213,7 @@ import ScrollToTop from './components/ScrollToTop';
 import OurSolutions from './components/pages/OurSolutions';
 import Works from './components/pages/works';
 import Blog from './components/pages/Blog';
+import BlogPost from './components/pages/BlogPost';
 
 // --- HOME COMPONENT WITH AUTO-SCROLL LOGIC ---
 function Home({ onOpenForm }){
@@ -281,10 +282,11 @@ function App() {
               <>
                 <Solutions />
                 <OurSolutions />
-                <Works />
+                {/* <Works /> */}
               </>
             } />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </div>
 
