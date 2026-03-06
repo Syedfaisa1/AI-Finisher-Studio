@@ -24,7 +24,7 @@ export default function Footer({ onOpenForm }) {
               Get Started <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
             
-            <button className="w-full sm:w-auto px-8 py-3.5 bg-[#36363680] border border-[#2e2e2e] hover:border-slate-500 text-white font-medium rounded-lg transition-all flex items-center justify-center gap-2">
+            <button onClick={onOpenForm}  className="w-full sm:w-auto px-8 py-3.5 bg-[#36363680] cursor-pointer border border-[#2e2e2e] hover:border-slate-500 text-white font-medium rounded-lg transition-all flex items-center justify-center gap-2">
               <CalendarDays size={18} className="text-slate-400" /> Book Strategy Call
             </button>
           </div>

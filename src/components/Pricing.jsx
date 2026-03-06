@@ -14,7 +14,8 @@ export default function Pricing() {
       description: "Perfect for early prototypes.",
       features: ["Architecture review", "Technical roadmap", "MVP assessment", "Email support"],
       buttonText: "Get Started",
-      isPopular: false
+      isPopular: false,
+      cboxId: "STARTER_FORM_ID"
     },
     {
       name: "Build",
@@ -22,6 +23,7 @@ export default function Pricing() {
       description: "Turn your prototype into a deployable product.",
       features: ["Backend stabilization", "Auth & security", "Deployment pipeline", "Documentation", "Priority support", "3 weeks delivery"],
       buttonText: "Start Building",
+      cboxId: "STARTER_FORM_ID",
       isPopular: true
     },
     {
@@ -30,7 +32,8 @@ export default function Pricing() {
       description: "For founders preparing for scale or funding.",
       features: ["Everything in Build", "Scalability planning", "Compliance starter", "Architecture diagrams", "Investor technical brief", "Dedicated engineer"],
       buttonText: "Go Investor Ready",
-      isPopular: false
+      isPopular: false,
+      cboxId: "STARTER_FORM_ID"
     }
   ];
 
@@ -108,7 +111,8 @@ export default function Pricing() {
                   </div>
 
                   <button 
-                    className={`w-full py-4 mt-auto rounded-xl font-bold text-sm transition-all duration-300 ${
+                    data-cbox-show="YOUR_BOX_ID"
+                    className={`w-full py-4 mt-auto cursor-pointer rounded-xl font-bold text-sm transition-all duration-300 ${
                       isHighlighted 
                         ? 'bg-[#14bc8b] text-[#0a0a0a] shadow-[0_10px_20px_rgba(20,188,139,0.3)]' 
                         : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'
